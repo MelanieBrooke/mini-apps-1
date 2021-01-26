@@ -55,7 +55,6 @@ var placePiece = function(space) {
   var placed = '_' + player + '_';
   if (document.getElementById(space).innerHTML === '___') {
     document.getElementById(space).innerHTML = placed;
-    console.log('placed', placed)
     var winner = checkWinner();
     if (winner === true) {
       document.getElementById('gameInfo').innerHTML = 'Player ' + currentPlayer + ' wins!';
