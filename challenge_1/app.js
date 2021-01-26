@@ -1,4 +1,7 @@
 var currentPlayer = 'X';
+var xScore = 0;
+var oScore = 0;
+var tScore = 0;
 
 window.onload = function(){
   var resetButton = document.getElementById('resetButton');
@@ -56,9 +59,18 @@ var placePiece = function(space) {
     var winner = checkWinner();
     if (winner === true) {
       document.getElementById('gameInfo').innerHTML = 'Player ' + currentPlayer + ' wins!';
+      if (currentPlayer === 'X') {
+        xScore += 1;
+        document.getElementById('xScore').innerHTML = xScore;
+      } else if (currentPlayer === 'O') {
+        oScore += 1;
+        document.getElementById('oScore').innerHTML = oScore;
+      }
       return;
     } else if (winner === 'tie') {
-      document.getElementById('gameInfo').innerHTML = 'Uh oh. The game is tied. You both lost. Reset the board to try again!'
+      document.getElementById('gameInfo').innerHTML = 'Uh oh. The game is tied. You both lost. Reset the board to try again!';
+      tScore += 1;
+      document.getElementById('tScore').innerHTML = tScore;
       return;
     }
     changePlayer();
