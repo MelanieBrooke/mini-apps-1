@@ -4,7 +4,7 @@ const port = 3000;
 const router = express.Router();
 const bodyParser = require('body-parser');
 
-app.use(express.static('client'));
+app.use(express.static('./client'));
 
 
 
@@ -22,4 +22,6 @@ app.post('/' (req, res) => {
   // preventDefault();
   console.log('hi');
   console.log(req.body);
+  res.end();
+
 });

@@ -12,3 +12,8 @@
 
 // Convert JSON object?
 // HOW DO I CREATE CSV
+
+// Idea: multi-step the conversion to CSV
+// Convert everything into an object that can be easier put into CSV form somehow {key: [value, value, value], key [value]}, make sure to put in padding if a value does not exist
+// Do I need to worry about new properties being added?
+// Initial object determines properties, then more can be added
