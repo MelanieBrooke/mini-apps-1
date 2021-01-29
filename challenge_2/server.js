@@ -24,7 +24,6 @@ app.post('/' (req, res) => {
   console.log('hi');
   console.log(req.body);
   res.end();
-
 });
 
 
@@ -37,15 +36,11 @@ var parseData = function(data) {
     for (var i = 0; i < keysArray.length; i++) {
       if (dataObject[keysArray[i]] !== undefined) {
         infoString += dataObject[keysArray[i]];
-        infoString += ',';
-      } else {
-        infoString += '<nodata>,';
       }
+      infoString += ',';
     }
     for (var key in dataObject) {
-      if (keysArray.includes(key)) {
-        console.log('cool')
-      } else if (key !== 'children') {
+      if (!keysArray.includes(key) && key !== 'children') {
         keysArray.push(key);
         infoString += dataObject[key];
         infoString += ',';
@@ -63,6 +58,7 @@ var parseData = function(data) {
   var csvKeys = keysArray.join(',');
   csvKeys = csvKeys += '\n';
   var csvText = csvKeys.concat(textToWrite);
+  csvText = csvText.replace(/,\n/g, '\n');
   return csvText;
 };
 
