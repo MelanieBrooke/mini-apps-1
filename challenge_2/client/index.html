@@ -41,6 +41,10 @@
           console.log('success');
           $('#showReport').prepend(`<h3>Your Data:</h3><br><p>${data}</p>`);
           downloadButtonFunctionality();
+        },
+        error: function(err) {
+          console.error(err);
+          // $('#showReport').prepend(`<h3>Please enter a file</h3>`)
         }
       });
     };
@@ -49,19 +53,28 @@
       $('#showReport').prepend(`<button id="downloadButton">Download CSV</button>`);
       $('#downloadButton').on('click', function(e) {
         console.log('download clicked');
-        e.preventDefault();
-        downloadFunction();
+        $.ajax({
+          method: 'GET',
+          url: 'http://localhost:3000/getfile/',
+          success: () => {
+            console.log('downloaded!')
+            // console.log(data);
+          }
+      })
+        // e.preventDefault();
+        // downloadFunction();
       })
     }
 
     var downloadFunction = function() {
-      $.ajax({
-        method: 'GET',
-        url: 'http://localhost:3000/',
-        success: (data) => {
-          console.log('downloaded!')
-        }
-      })
+      // $.ajax({
+      //   method: 'GET',
+      //   url: 'http://localhost:3000/getfile',
+      //   success: (data) => {
+      //     console.log('downloaded!')
+      //     console.log(data);
+      //   }
+      // })
     }
 
 
