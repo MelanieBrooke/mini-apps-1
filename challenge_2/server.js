@@ -34,8 +34,12 @@ app.post('/', (req, res) => {
   //     console.log('file sent');
   //   }
   // });
-  res.redirect('/');
-  // res.end();
+  // res.set({
+  //   'Location': '/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/client/index.html'
+  // });
+  res.location('/');
+  res.sendFile('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv');
+  // res.redirect('/');
 });
 
 
