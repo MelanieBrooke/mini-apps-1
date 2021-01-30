@@ -6,8 +6,8 @@
 <body>
   <h1>CSV Report Generator</h1>
   <div id="inputDiv">
-    <form action="/" method="post" id="inputForm">
-      <textarea id="userJSON" name="userJSON" rows="10" cols="50"></textarea>
+    <form id="inputForm" method="POST" action="http://localhost:3000/">
+      <textarea id="userJSON" name="userJSON" rows="10" cols="50" enctype="multipart/form-data"></textarea>
       <input type="submit" id="submitButton">
     </form>
   </div>

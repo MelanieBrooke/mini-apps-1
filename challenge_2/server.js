@@ -4,8 +4,11 @@ const port = 3000;
 const router = express.Router();
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const csvFile = require('./report.txt');
 
 app.use(express.static('./client'));
+app.use(bodyParser.urlencoded({extended: true}));
+// app.use(bodyParser.json());
 
 
 
@@ -13,16 +16,31 @@ app.listen(port, () => {
   console.log(`listening at http://localhost:${port}`);
 })
 
-
+// client action needs to send to server location, in this case it was the localhost
+// body parser is required to read the data
+// focus on one step at a time
 
 
 
 // routers
 
-app.post('/' (req, res) => {
+app.post('/', (req, res) => {
+  // body parser
+  // take in data
+  // convert it
+  // send it back
   // preventDefault();
-  console.log('hi');
-  console.log(req.body);
+  console.log('hi----------------------');
+  var data = req.body.userJSON;
+  data = data.substring(0, data.length-1);
+  var json = JSON.parse(data);
+  var parsed = parseData(json);
+  // console.log(parsed);
+  // console.log(typeof parsed);
+
+  // var file = '/report.txt'
+  // writeCSV(parsed, '/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.txt');
+  writeCSV('./report.txt', parsed);
   res.end();
 });
 
@@ -63,9 +81,10 @@ var parseData = function(data) {
 };
 
 
-var writeFile = function(file, text) {
-  fs.writeFile(file, text, err => {
+var writeCSV = function(file, data) {
+  fs.writeFile(file, data, err => {
     if (err) {
+      console.log('nope');
       console.error(err);
       return;
     }
