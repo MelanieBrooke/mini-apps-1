@@ -6,8 +6,8 @@
 <body>
   <h1>CSV Report Generator</h1>
   <div id="inputDiv">
-    <form id="inputForm" method="POST" action="http://localhost:3000/">
-      <textarea id="userJSON" name="userJSON" rows="10" cols="50" enctype="multipart/form-data" required></textarea>
+    <form id="inputForm" method="POST" action="http://localhost:3000" enctype="multipart/form-data">
+      <input type="file" id="userJSON" name="userJSON">
       <input type="submit" id="submitButton">
     </form>
   </div>
@@ -16,3 +16,22 @@
   </div>
 </body>
 
+<!-- Before text to file upload refactor-->
+
+<!-- <!DOCTYPE html>
+<head>
+  <title>CSV Report Generator: Melanie DeWitt</title>
+  <script>src="app.js"</script>
+</head>
+<body>
+  <h1>CSV Report Generator</h1>
+  <div id="inputDiv">
+    <form id="inputForm" method="POST" action="http://localhost:3000/">
+      <textarea id="userJSON" name="userJSON" rows="10" cols="50" enctype="multipart/form-data" required></textarea>
+      <input type="submit" id="submitButton">
+    </form>
+  </div>
+  <div>
+    <button id="downloadButton">Download latest CSV</button>
+  </div>
+</body> -->

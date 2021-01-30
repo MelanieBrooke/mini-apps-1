@@ -5,6 +5,11 @@ const router = express.Router();
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const csvFile = require('./report.csv');
+const multer = require('multer');
+const storage = multer.memoryStorage();
+const upload = multer({
+  storage:storage,
+});
 
 app.use(express.static('./client'));
 app.use(bodyParser.urlencoded({extended: true}));
@@ -16,31 +21,35 @@ app.listen(port, () => {
 
 
 // routers
-
-app.post('/', (req, res) => {
-  console.log('hi----------------------');
-  var data = req.body.userJSON;
-  if (data[data.length-1] === ';') {
-    data = data.substring(0, data.length-1);
+app.post('/', upload.single('userJSON'), (req, res, next) => {
+  console.log(req.file !== undefined);
+  var bufferFile = (req.file.buffer);
+  bufferFile = (bufferFile.toString());
+  if (bufferFile[bufferFile.length-1] === ';') {
+    bufferFile = bufferFile.substring(0, bufferFile.length-1);
   }
-  var json = JSON.parse(data);
-  var parsed = parseData(json);
-  // fs.unlinkSync('./report.csv');
+  bufferFile = JSON.parse(bufferFile);
+  var parsed = parseData(bufferFile);
+  console.log(parsed);
   writeCSV('./report.csv', parsed);
-  // res.sendFile('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv', err => {
-  //   if (err) {
-  //     console.error(err);
-  //   } else {
-  //     console.log('file sent');
-  //   }
-  // });
-  // res.set({
-  //   'Location': '/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/client/index.html'
-  // });
   res.location('/');
   res.sendFile('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv');
-  // res.redirect('/');
-});
+})
+
+
+
+
+// app.post('/', (req, res) => {
+//   var data = req.body.userJSON;
+//   if (data[data.length-1] === ';') {
+//     data = data.substring(0, data.length-1);
+//   }
+//   var json = JSON.parse(data);
+//   var parsed = parseData(json);
+//   writeCSV('./report.csv', parsed);
+//   res.location('/');
+//   res.sendFile('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv');
+// });
 
 
 
