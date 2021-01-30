@@ -36,6 +36,14 @@ app.post('/', upload.single('userJSON'), (req, res, next) => {
   res.sendFile('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv');
 })
 
+app.get('/', (req, res, next) => {
+  console.log('file requested');
+  res.download('/Users/mdewitt/repos/galvanize/rpt26-mini-apps-1/challenge_2/report.csv', function(err) {
+    if (err) {
+      console.error(err)
+    }
+  });
+});
 
 
 

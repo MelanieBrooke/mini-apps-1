@@ -3,10 +3,31 @@
 // You may also assume that child records in the JSON will always be in a property called `children`.
 
 
+
+$(document).ready(function() {
+  console.log('ready!');
+  // $('#uploadButton').on('click', function(e) {
+  //   console.log('clicked');
+  //   e.preventDefault();
+  // })
+
+  // var uploadFunction = function() {
+  //   var inputForm = document.getElementById('inputForm');
+  //   var jsonUpload = new FormData(inputForm);
+  //   $.ajax({
+  //     method: 'POST',
+  //     url: 'http://localhost:3000/',
+  //     data: jsonUpload
+  //     success: (data) => {
+  //       console.log('success');
+  //     }
+  //   })
+  // };
+
+});
+
+
 // Handle form submit
-
-
-
 
 // Handle download request
 

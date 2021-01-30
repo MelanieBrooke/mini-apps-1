@@ -1,19 +1,71 @@
 <!DOCTYPE html>
 <head>
   <title>CSV Report Generator: Melanie DeWitt</title>
-  <script>src="app.js"</script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>src="./app.js"</script>
+
 </head>
 <body>
   <h1>CSV Report Generator</h1>
   <div id="inputDiv">
     <form id="inputForm" method="POST" action="http://localhost:3000" enctype="multipart/form-data">
       <input type="file" id="userJSON" name="userJSON">
-      <input type="submit" id="submitButton">
+      <!-- <input type="submit" id="submitButton"> -->
     </form>
+    <button id="uploadButton">Submit JSON File</button>
   </div>
   <div>
-    <button id="downloadButton">Download latest CSV</button>
+    <div id="showReport"></div>
   </div>
+  <!--Could not figure out how to connect to app.js, so helpdesk recommended I keep jQuery in here for now and figure out how to move it over later when time is not of the essence-->
+  <script>
+    $(document).ready(function() {
+      console.log('ready!');
+      $('#uploadButton').on('click', function(e) {
+        console.log('clicked');
+        e.preventDefault();
+        uploadFunction();
+      })
+    });
+
+    var uploadFunction = function() {
+      var inputForm = document.getElementById('inputForm');
+      var jsonUpload = new FormData(inputForm);
+      $.ajax({
+        method: 'POST',
+        url: 'http://localhost:3000/',
+        data: jsonUpload,
+        processData: false,
+        contentType: false,
+        success: (data) => {
+          console.log('success');
+          $('#showReport').prepend(`<h3>Your Data:</h3><br><p>${data}</p>`);
+          downloadButtonFunctionality();
+        }
+      });
+    };
+
+    var downloadButtonFunctionality = function() {
+      $('#showReport').prepend(`<button id="downloadButton">Download CSV</button>`);
+      $('#downloadButton').on('click', function(e) {
+        console.log('download clicked');
+        e.preventDefault();
+        downloadFunction();
+      })
+    }
+
+    var downloadFunction = function() {
+      $.ajax({
+        method: 'GET',
+        url: 'http://localhost:3000/',
+        success: (data) => {
+          console.log('downloaded!')
+        }
+      })
+    }
+
+
+  </script>
 </body>
 
 <!-- Before text to file upload refactor-->
