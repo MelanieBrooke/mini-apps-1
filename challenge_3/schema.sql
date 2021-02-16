@@ -1,4 +1,4 @@
-CREATE DATABASE checkout;
+CREATE DATABASE IF NOT EXISTS checkout;
 
 USE checkout;
 

@@ -6,8 +6,8 @@ const path = require('path');
 // require("@babel/register");
 
 // **uncomment when ready to try database functions**
-// const db = require('./db/models.js');
-
+const db = require('./db');
+// mysqlconnect.connection.connect();
 
 
 
@@ -26,13 +26,10 @@ app.get('/', (req, res) => {
 });
 
 
-app.post('userInfo', (req, res) => {
+app.post('/userInfo', (req, res) => {
   console.log('post userInfo request sent to server')
-  // format info
-  var userInfo = {
-    // see if you need to type it out or if data has some formatting already
-  }
-  db.postUserInfo(userInfo);
+  console.log(req.body)
+  db.postUserInfo(req.body);
   res.end('post userInfo request to server successful')
 });
 
