@@ -5,11 +5,12 @@
     "express": "^4.17.1",
     "mysql": "^2.18.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "requirejs": "^2.3.6"
   },
   "scripts": {
     "start": "nodemon ./server.js",
-    "babel": "babel client --out-dir public --presets @babel/preset-react --source-maps inline --watch"
+    "babel": "npx babel ./client/app.jsx --out-dir ./public --presets @babel/preset-react --source-maps inline --watch"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.16",

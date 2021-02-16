@@ -1,6 +1,6 @@
 // import React from 'react';
-import ReactDOM from 'react-dom';
-import $ from 'jquery';
+// import ReactDOM from 'react-dom';
+// import $ from 'jquery';
 // import {} from './module.js';
 
 class App extends React.Component {
@@ -33,7 +33,7 @@ class App extends React.Component {
   render () {
     return (<div>
       <h1>Welcome to the Ultimate Checkout Experience</h1>
-      <button id="buttonCheckout" onClick={this.handleClick}>Proceed with account creation and checkout</button>
+      {/* <button id="buttonCheckout" onClick={this.handleClick}>Proceed with account creation and checkout</button> */}
     </div>)
   }
 
@@ -184,4 +184,4 @@ class App extends React.Component {
 }
 
 
-ReactDom.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));
