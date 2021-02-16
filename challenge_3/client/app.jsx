@@ -1,8 +1,3 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import $ from 'jquery';
-// import {} from './module.js';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -32,10 +27,6 @@ class App extends React.Component {
     this.sendUserData = this.sendUserData.bind(this);
   }
 
-  componentDidMount() {
-    console.log('component did mount')
-  }
-
   render () {
     if (this.state.currentForm === 0) {
       return <this.DisplayFormZero onClick={this.handleClick}/>
@@ -54,13 +45,11 @@ class App extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    console.log('clickity click');
     if (this.state.currentForm < 5) {
       this.state.currentForm += 1;
       this.setState({
         currentForm: this.state.currentForm
       })
-    console.log('HEY RIGHT HERE: ', this.state.currentForm);
     } else {
       this.setState({
         currentForm: 0,
@@ -102,12 +91,9 @@ class App extends React.Component {
     var formName = e.target.id;
     this.sendUserData(formName);
     this.handleClick(e);
-    // clarify which form was submitted
-    // call a post function based on form
   }
 
   sendUserData (formName) {
-    console.log('sendUserData for form ', formName);
     var url = '/' + formName;
     // var data = this.state;
     axios.post(url, this.state)
@@ -201,8 +187,6 @@ class App extends React.Component {
       <button onClick={props.onClick}>Checkout Again</button>
     </div>)
   }
-
 }
-
 
 ReactDOM.render(<App/>, document.getElementById('app'));

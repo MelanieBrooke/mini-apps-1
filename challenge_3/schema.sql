@@ -1,16 +1,15 @@
 CREATE DATABASE IF NOT EXISTS checkout;
-
 USE checkout;
 
 CREATE TABLE IF NOT EXISTS users (
   id INT NOT NULL AUTO_INCREMENT,
   userName CHAR(20),
-  -- password with hash
+  -- if time later, add password with hash
   pswd CHAR(20),
   firstName CHAR(20),
   lastName CHAR(20),
   email CHAR(40),
-  phone CHAR(10),
+  phone INT,
   address1 CHAR(40),
   address2 CHAR(40),
   addressCity CHAR(20),
