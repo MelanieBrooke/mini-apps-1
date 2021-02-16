@@ -6,8 +6,9 @@ const path = require('path');
 // require("@babel/register");
 
 // **uncomment when ready to try database functions**
-const db = require('./db');
+const db = require('./db/models.js');
 // mysqlconnect.connection.connect();
+// const database = require('./schema.sql')
 
 
 
@@ -36,20 +37,14 @@ app.post('/userInfo', (req, res) => {
 app.post('userContact', (req, res) => {
   console.log('post userContact request sent to server')
   // format info
-  var userContact = {
-    // see if you need to type it out or if data has some formatting already
-  }
-  db.postUserInfo(userContact);
+  db.postUserContact(userContact);
   res.end('post userContact request to server successful')
 });
 
 app.post('userPayment', (req, res) => {
   console.log('post userPayment request sent to server')
   // format info
-  var userPayment = {
-    // see if you need to type it out or if data has some formatting already
-  }
-  db.postUserInfo(userPayment);
+  db.postUserPayment(userPayment);
   res.end('post userPayment request to server successful')
 });
 

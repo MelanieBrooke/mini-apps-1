@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
   pswd CHAR(20),
   firstName CHAR(20),
   lastName CHAR(20),
-  email CHAR(20),
+  email CHAR(40),
   phone CHAR(10),
   address1 CHAR(40),
   address2 CHAR(40),
@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS users (
   cardExpMonth INT,
   cardExpYear INT,
   billingZip INT,
+  PRIMARY KEY (id),
   UNIQUE (userName)
   -- later add other tables for cleaner storage
 );
