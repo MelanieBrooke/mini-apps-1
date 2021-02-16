@@ -29,22 +29,19 @@ app.get('/', (req, res) => {
 
 app.post('/userInfo', (req, res) => {
   console.log('post userInfo request sent to server')
-  console.log(req.body)
   db.postUserInfo(req.body);
   res.end('post userInfo request to server successful')
 });
 
-app.post('userContact', (req, res) => {
+app.post('/userContact', (req, res) => {
   console.log('post userContact request sent to server')
-  // format info
-  db.postUserContact(userContact);
+  db.postUserContact(req.body);
   res.end('post userContact request to server successful')
 });
 
-app.post('userPayment', (req, res) => {
+app.post('/userPayment', (req, res) => {
   console.log('post userPayment request sent to server')
-  // format info
-  db.postUserPayment(userPayment);
+  db.postUserPayment(req.body);
   res.end('post userPayment request to server successful')
 });
 

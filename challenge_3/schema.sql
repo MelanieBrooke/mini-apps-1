@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS users (
   addressCity CHAR(20),
   addressState CHAR(2),
   addressZip INT,
-  cardNum INT,
+  cardNum BIGINT,
   cardCVV INT,
   cardExpMonth INT,
   cardExpYear INT,

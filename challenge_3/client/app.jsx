@@ -28,6 +28,7 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleMenuChange = this.handleMenuChange.bind(this);
     this.sendUserData = this.sendUserData.bind(this);
   }
 
@@ -40,19 +41,47 @@ class App extends React.Component {
       return <this.DisplayFormZero onClick={this.handleClick}/>
     } else if (this.state.currentForm === 1) {
       return <this.DisplayFormOne onClick={this.handleClick} onSubmit={this.handleSubmit} onChange={this.handleChange}/>
+    } else if (this.state.currentForm === 2) {
+      return <this.DisplayFormTwo onClick={this.handleClick} onSubmit={this.handleSubmit} onChange={this.handleChange} onMenuChange={this.handleMenuChange}/>
+    } else if (this.state.currentForm === 3) {
+      return <this.DisplayFormThree onClick={this.handleClick} onSubmit={this.handleSubmit} onChange={this.handleChange}/>
+    } else if (this.state.currentForm === 4) {
+      return <this.DisplayFormFour onClick={this.handleClick}/>
+    } else if (this.state.currentForm === 5) {
+      return <this.DisplayFormFive onClick={this.handleClick}/>
     }
   }
 
   handleClick(e) {
     e.preventDefault();
     console.log('clickity click');
-    if (this.state.currentForm !== 4) {
+    if (this.state.currentForm < 5) {
       this.state.currentForm += 1;
       this.setState({
         currentForm: this.state.currentForm
       })
-    }
     console.log('HEY RIGHT HERE: ', this.state.currentForm);
+    } else {
+      this.setState({
+        currentForm: 0,
+        userName: '',
+        firstName: '',
+        lastName: '',
+        password: '',
+        email: '',
+        phone: '',
+        address1: '',
+        address2: '',
+        addressCity: '',
+        addressState: '',
+        addressZip: '',
+        cardNum: '',
+        cardCVV: '',
+        cardExpMonth: '',
+        cardExpYear: '',
+        billingZip: ''
+      })
+    }
   }
 
   handleChange(e) {
@@ -72,7 +101,7 @@ class App extends React.Component {
     e.preventDefault();
     var formName = e.target.id;
     this.sendUserData(formName);
-    // this.handleClick(e);
+    this.handleClick(e);
     // clarify which form was submitted
     // call a post function based on form
   }
@@ -115,59 +144,63 @@ class App extends React.Component {
     </div>)
   }
 
-  // var DisplayForm2 = (props) => {
-  //   return (<div>
-  //     <h3>Enter Address and Contact Info</h3>
-  //     <form onSubmit={this.handleSubmit} id="userContact">
-  //       <label for="address1">Address Line 1:</label>
-  //       <input onChange={this.handleChange} type="text" name="address1" id="address1"/>
-  //       <label for="address2">Address Line 2:</label>
-  //       <input onChange={this.handleChange} type="text" name="address2" id="address2"/>
-  //       <label for="addressCity">City:</label>
-  //       <input onChange={this.handleChange} type="text" name="addressCity" id="addressCity"/>
-  //       <label for="addressState">State:</label>
-  //       <select onChange={this.handleMenuChange} name="addressState" id="addressState">
-  //         <option value="CO">Colorado</option>
-  //         <option value="CA">California</option>
-  //         <option value="TX">Texas</option>
-  //         <option value="WA">Washingtin</option>
-  //       </select>
-  //       <label for="addressZip">Zip Code:</label>
-  //       <input onChange={this.handleChange} type="text" name="addressZip" id="addressZip"/>
-  //       <input type="submit">Next</input>
-  //     </form>
-  //   </div>)
-  // }
+  DisplayFormTwo(props) {
+    return (<div>
+      <h3>Enter Address and Contact Info</h3>
+      <form onSubmit={props.onSubmit} id="userContact">
+        <label htmlFor="address1">Address Line 1:</label>
+        <input onChange={props.onChange} type="text" name="address1" id="address1"/>
+        <label htmlFor="address2">Address Line 2:</label>
+        <input onChange={props.onChange} type="text" name="address2" id="address2"/>
+        <label htmlFor="addressCity">City:</label>
+        <input onChange={props.onChange} type="text" name="addressCity" id="addressCity"/>
+        <label htmlFor="addressState">State:</label>
+        <select onChange={props.onMenuChange} name="addressState" id="addressState">
+          <option value="CO">Colorado</option>
+          <option value="CA">California</option>
+          <option value="TX">Texas</option>
+          <option value="WA">Washington</option>
+        </select>
+        <label htmlFor="addressZip">Zip Code:</label>
+        <input onChange={props.onChange} type="number" name="addressZip" id="addressZip"/>
+        <label htmlFor="phone">Phone Number:</label>
+        <input onChange={props.onChange} type="number" name="phone" id="phone"/>
+        <input type="submit"/>
+      </form>
+    </div>)
+  }
 
-  // var DisplayForm3 = (props) => {
-  //   return (<div>
-  //     <form onSubmit={this.handleSubmit} id="userPayment">
-  //       <label for="cardNum">Payment Card Number:</label>
-  //       <input onChange={this.handleChange} type="number" name="cardNum" id="cardNum"/>
-  //       <label for="cardCVV">CVV (3-digit security code):</label>
-  //       <input onChange={this.handleChange} type="number" name="cardCVV" id="cardCVV"/>
-  //       <label for="cardExpMonth">Expiration Month:</label>
-  //       <input onChange={this.handleChange} type="number" name="cardExpMonth" id="cardExpMonth"/>
-  //       <label for="cardExpYear">Expiration Year:</label>
-  //       <input onChange={this.handleChange} type="range" min="2021" max="2031" name="cardExpYear" id="cardExpYear"/>
-  //       <label for="billingZip">Email:</label>
-  //       <input onChange={this.handleChange} type="text" name="billingZip" id="billingZip"/>
-  //       <input type="submit">Next</input>
-  //     </form>
-  //   </div>)
-  // }
+  DisplayFormThree(props) {
+    return (<div>
+      <form onSubmit={props.onSubmit} id="userPayment">
+        <label htmlFor="cardNum">Payment Card Number:</label>
+        <input onChange={props.onChange} type="number" name="cardNum" id="cardNum"/>
+        <label htmlFor="cardCVV">CVV (3-digit security code):</label>
+        <input onChange={props.onChange} type="number" name="cardCVV" id="cardCVV"/>
+        <label htmlFor="cardExpMonth">Expiration Month:</label>
+        <input onChange={props.onChange} type="number" name="cardExpMonth" id="cardExpMonth"/>
+        <label htmlFor="cardExpYear">Expiration Year:</label>
+        <input onChange={props.onChange} type="number" name="cardExpYear" id="cardExpYear"/>
+        <label htmlFor="billingZip">Billing Zip Code:</label>
+        <input onChange={props.onChange} type="number" name="billingZip" id="billingZip"/>
+        <input type="submit"/>
+      </form>
+    </div>)
+  }
 
-  // var DisplayForm4 = (props) => {
-  //   return (<div>
-  //     <h2>Your order has been submitted!<br></br>Thank you for shopping with us.</h2>
-  //   </div>)
-  // }
+  DisplayFormFour(props) {
+    return(<div>
+      <h1>Confirm Payment</h1>
+      <button id="buttonCheckout" onClick={props.onClick}>Confirm info and finalize purchase</button>
+    </div>)
+  }
 
-
-  // will be using /userInfo, /userContact, and /userPayment to send post requests
-
-
-
+  DisplayFormFive(props) {
+    return (<div>
+      <h2>Your order has been submitted!<br></br>Thank you for shopping with us.</h2>
+      <button onClick={props.onClick}>Checkout Again</button>
+    </div>)
+  }
 
 }
 
