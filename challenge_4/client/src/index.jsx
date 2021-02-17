@@ -1,12 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Board from './components/Board.jsx';
+import GameEnd from './components/GameEnd.jsx';
 import '../dist/style.css';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      win: false,
+      gameOver: false,
       player: "red",
       pieces: {
         a: {
@@ -79,13 +82,15 @@ class App extends React.Component {
     this.checkForWin = this.checkForWin.bind(this);
     this.findPieceByCoordinates = this.findPieceByCoordinates.bind(this);
     this.createDiagonalSearchArray = this.createDiagonalSearchArray.bind(this);
+    this.checkTie = this.checkTie.bind(this);
+    this.gameEnd = this.gameEnd.bind(this);
   }
 
   render() {
     return(
       <div>
         <h1>Connect Four</h1>
-        <h3>It's {this.state.player} player's turn.</h3>
+        <GameEnd player={this.state.player} gameOver={this.state.gameOver} win={this.state.win}/>
         <Board onClick={this.handleClick}/>
       </div>
     )
@@ -117,9 +122,14 @@ class App extends React.Component {
   dropPiece(space) {
     document.getElementById(space).classList.add(this.state.player.toString())
     document.getElementById(space).classList.remove("white");
-    this.checkForWin();
-    this.togglePlayer();
-    this.findPieceByCoordinates([1, 2])
+    // if (this.checkForWin() || this.checkTie()) {
+    if (this.checkForWin()) {
+      this.gameEnd();
+    } else if (this.checkTie()) {
+      this.gameEnd();
+    } else {
+      this.togglePlayer();
+    }
   };
 
   togglePlayer() {
@@ -134,10 +144,12 @@ class App extends React.Component {
   }
 
   checkForWin() {
-    this.detectColumnWin();
-    this.detectRowWin();
-    this.detectMajorDiagonalWin();
-    this.detectMinorDiagonalWin();
+    if (this.detectColumnWin() ||
+    this.detectRowWin() ||
+    this.detectMajorDiagonalWin() ||
+    this.detectMinorDiagonalWin()) {
+      return true;
+    }
   }
 
   detectColumnWin() {
@@ -149,7 +161,7 @@ class App extends React.Component {
             col[j].color === col[j+2].color &&
             col[j].color === col[j+3].color) {
             this.declareWin();
-            break;
+            return true;
           }
         }
       }
@@ -171,6 +183,7 @@ class App extends React.Component {
           current[k].color === current[k+2].color &&
           current[k].color === current[k+3].color) {
             this.declareWin();
+            return true;
           }
         }
       }
@@ -189,6 +202,7 @@ class App extends React.Component {
         check[l].color === diag2.color &&
         check[l].color === diag3.color) {
           this.declareWin();
+          return true;
         }
       }
     }
@@ -206,13 +220,17 @@ class App extends React.Component {
         check[l].color === diag2.color &&
         check[l].color === diag3.color) {
           this.declareWin();
+          return true;
         }
       }
     }
   }
 
   declareWin() {
-    console.log('Win!')
+    console.log('Win!'),
+    this.setState({
+      win: true
+    })
   }
 
   findPieceByCoordinates(crds) {
@@ -238,6 +256,28 @@ class App extends React.Component {
       array.push(p['d'][6], p['e'][6], p['f'][6], p['g'][6], p['d'][5], p['e'][5], p['f'][5], p['g'][5], p['d'][4], p['e'][4], p['f'][4], p['g'][4]);
     }
     return array;
+  }
+
+  checkTie() {
+    if (this.state.win === true) {
+      return;
+    }
+    for (var col in this.state.pieces) {
+      for (var row = 1; row < 7; row ++) {
+        if (this.state.pieces[col][row].empty === true) {
+          console.log('not a tie yet!')
+          return false;
+        }
+      }
+    }
+    console.log('oh it\'s a tie now.')
+    return true;
+  }
+
+  gameEnd() {
+    this.setState({
+      gameOver: true
+    })
   }
 
 
