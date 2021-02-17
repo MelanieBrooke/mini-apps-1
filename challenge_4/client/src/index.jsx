@@ -76,6 +76,7 @@ class App extends React.Component {
     this.detectRowWin = this.detectRowWin.bind(this);
     this.detectMajorDiagonalWin = this.detectMajorDiagonalWin.bind(this);
     this.detectMinorDiagonalWin = this.detectMinorDiagonalWin.bind(this);
+    this.checkForWin = this.checkForWin.bind(this);
   }
 
   render() {
@@ -90,7 +91,6 @@ class App extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    console.log(event.target.id);
     this.checkColumnForEmpty(event.target.id)
   }
 
@@ -101,7 +101,6 @@ class App extends React.Component {
       if (currentColumn[i].empty === true) {
         this.state.pieces[row][i].empty = false;
         this.state.pieces[row][i].color = this.state.player;
-        console.log(this.state.pieces[row]);
         full = false;
         var piece = row.toString() + i.toString();
         this.dropPiece(piece);
@@ -116,6 +115,7 @@ class App extends React.Component {
   dropPiece(space) {
     document.getElementById(space).classList.add(this.state.player.toString())
     document.getElementById(space).classList.remove("white");
+    this.checkForWin();
     this.togglePlayer();
   };
 
@@ -130,8 +130,16 @@ class App extends React.Component {
     })
   }
 
+  checkForWin() {
+    this.detectColumnWin();
+    this.detectRowWin();
+    // this.detectMajorDiagonalWin();
+    // this.detectMinorDiagonalWin();
+  }
+
   detectColumnWin() {
     for (var col in this.state.pieces) {
+      col = this.state.pieces[col];
       for (var j = 1; j < 4; j++) {
         if (col[j].empty === false &&
           col[j+1].empty === false &&
@@ -149,7 +157,28 @@ class App extends React.Component {
   }
 
   detectRowWin() {
-
+    var rowObj = {1:[], 2:[], 3:[], 4:[], 5:[], 6:[]};
+    for (var num = 1; num < 7; num++) {
+      for (var col in this.state.pieces) {
+        rowObj[num].push(this.state.pieces[col][num])
+      }
+    }
+    console.log(rowObj);
+    for (var row in rowObj) {
+      for (var k = 0; k < 4; k++) {
+        var current = rowObj[row];
+        if (current[k].empty === false &&
+        current[k+1].empty === false &&
+        current[k+2].empty === false &&
+        current[k+3].empty === false) {
+          if (current[k].color === current[k+1].color &&
+          current[k].color === current[k+2].color &&
+          current[k].color === current[k+3].color) {
+            this.declareWin();
+          }
+        }
+      }
+    }
   }
 
   detectMajorDiagonalWin() {
