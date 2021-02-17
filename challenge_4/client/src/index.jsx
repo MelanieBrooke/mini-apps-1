@@ -10,60 +10,60 @@ class App extends React.Component {
       player: "red",
       pieces: {
         a: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [1, 1]},
+          2:{empty:true, color:"white", coordinates: [1, 2]},
+          3:{empty:true, color:"white", coordinates: [1, 3]},
+          4:{empty:true, color:"white", coordinates: [1, 4]},
+          5:{empty:true, color:"white", coordinates: [1, 5]},
+          6:{empty:true, color:"white", coordinates: [1, 6]},
         },
         b: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [2, 1]},
+          2:{empty:true, color:"white", coordinates: [2, 2]},
+          3:{empty:true, color:"white", coordinates: [2, 3]},
+          4:{empty:true, color:"white", coordinates: [2, 4]},
+          5:{empty:true, color:"white", coordinates: [2, 5]},
+          6:{empty:true, color:"white", coordinates: [2, 6]},
         },
         c: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [3, 1]},
+          2:{empty:true, color:"white", coordinates: [3, 2]},
+          3:{empty:true, color:"white", coordinates: [3, 3]},
+          4:{empty:true, color:"white", coordinates: [3, 4]},
+          5:{empty:true, color:"white", coordinates: [3, 5]},
+          6:{empty:true, color:"white", coordinates: [3, 6]},
         },
         d: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [4, 1]},
+          2:{empty:true, color:"white", coordinates: [4, 2]},
+          3:{empty:true, color:"white", coordinates: [4, 3]},
+          4:{empty:true, color:"white", coordinates: [4, 4]},
+          5:{empty:true, color:"white", coordinates: [4, 5]},
+          6:{empty:true, color:"white", coordinates: [4, 6]},
         },
         e: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [5, 1]},
+          2:{empty:true, color:"white", coordinates: [5, 2]},
+          3:{empty:true, color:"white", coordinates: [5, 3]},
+          4:{empty:true, color:"white", coordinates: [5, 4]},
+          5:{empty:true, color:"white", coordinates: [5, 5]},
+          6:{empty:true, color:"white", coordinates: [5, 6]},
         },
         f: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [6, 1]},
+          2:{empty:true, color:"white", coordinates: [6, 2]},
+          3:{empty:true, color:"white", coordinates: [6, 3]},
+          4:{empty:true, color:"white", coordinates: [6, 4]},
+          5:{empty:true, color:"white", coordinates: [6, 5]},
+          6:{empty:true, color:"white", coordinates: [6, 6]},
         },
         g: {
-          1:{empty:true, color:"white"},
-          2:{empty:true, color:"white"},
-          3:{empty:true, color:"white"},
-          4:{empty:true, color:"white"},
-          5:{empty:true, color:"white"},
-          6:{empty:true, color:"white"},
+          1:{empty:true, color:"white", coordinates: [7, 1]},
+          2:{empty:true, color:"white", coordinates: [7, 2]},
+          3:{empty:true, color:"white", coordinates: [7, 3]},
+          4:{empty:true, color:"white", coordinates: [7, 4]},
+          5:{empty:true, color:"white", coordinates: [7, 5]},
+          6:{empty:true, color:"white", coordinates: [7, 6]},
         },
       }
     };
@@ -77,6 +77,8 @@ class App extends React.Component {
     this.detectMajorDiagonalWin = this.detectMajorDiagonalWin.bind(this);
     this.detectMinorDiagonalWin = this.detectMinorDiagonalWin.bind(this);
     this.checkForWin = this.checkForWin.bind(this);
+    this.findPieceByCoordinates = this.findPieceByCoordinates.bind(this);
+    this.createDiagonalSearchArray = this.createDiagonalSearchArray.bind(this);
   }
 
   render() {
@@ -117,6 +119,7 @@ class App extends React.Component {
     document.getElementById(space).classList.remove("white");
     this.checkForWin();
     this.togglePlayer();
+    this.findPieceByCoordinates([1, 2])
   };
 
   togglePlayer() {
@@ -133,18 +136,15 @@ class App extends React.Component {
   checkForWin() {
     this.detectColumnWin();
     this.detectRowWin();
-    // this.detectMajorDiagonalWin();
-    // this.detectMinorDiagonalWin();
+    this.detectMajorDiagonalWin();
+    this.detectMinorDiagonalWin();
   }
 
   detectColumnWin() {
     for (var col in this.state.pieces) {
       col = this.state.pieces[col];
       for (var j = 1; j < 4; j++) {
-        if (col[j].empty === false &&
-          col[j+1].empty === false &&
-          col[j+2].empty === false &&
-          col[j+3].empty === false) {
+        if (col[j].empty === false) {
           if (col[j].color === col[j+1].color &&
             col[j].color === col[j+2].color &&
             col[j].color === col[j+3].color) {
@@ -163,14 +163,10 @@ class App extends React.Component {
         rowObj[num].push(this.state.pieces[col][num])
       }
     }
-    console.log(rowObj);
     for (var row in rowObj) {
       for (var k = 0; k < 4; k++) {
         var current = rowObj[row];
-        if (current[k].empty === false &&
-        current[k+1].empty === false &&
-        current[k+2].empty === false &&
-        current[k+3].empty === false) {
+        if (current[k].empty === false) {
           if (current[k].color === current[k+1].color &&
           current[k].color === current[k+2].color &&
           current[k].color === current[k+3].color) {
@@ -182,16 +178,68 @@ class App extends React.Component {
   }
 
   detectMajorDiagonalWin() {
-
+    var check = this.createDiagonalSearchArray('major');
+    for (var l = 0; l < check.length; l++) {
+      if (check[l].empty === false) {
+        var cords = check[l].coordinates;
+        var diag1 = this.findPieceByCoordinates([(cords[0] + 1), (cords[1] - 1)]);
+        var diag2 = this.findPieceByCoordinates([(cords[0] + 2), (cords[1] - 2)]);
+        var diag3 = this.findPieceByCoordinates([(cords[0] + 3), (cords[1] - 3)]);
+        if (check[l].color === diag1.color &&
+        check[l].color === diag2.color &&
+        check[l].color === diag3.color) {
+          this.declareWin();
+        }
+      }
+    }
   }
 
   detectMinorDiagonalWin() {
-
+    var check = this.createDiagonalSearchArray('minor');
+    for (var l = 0; l < check.length; l++) {
+      if (check[l].empty === false) {
+        var cords = check[l].coordinates;
+        var diag1 = this.findPieceByCoordinates([(cords[0] - 1), (cords[1] - 1)]);
+        var diag2 = this.findPieceByCoordinates([(cords[0] - 2), (cords[1] - 2)]);
+        var diag3 = this.findPieceByCoordinates([(cords[0] - 3), (cords[1] - 3)]);
+        if (check[l].color === diag1.color &&
+        check[l].color === diag2.color &&
+        check[l].color === diag3.color) {
+          this.declareWin();
+        }
+      }
+    }
   }
 
   declareWin() {
     console.log('Win!')
   }
+
+  findPieceByCoordinates(crds) {
+    var result;
+    for (var col in this.state.pieces) {
+      for (var row = 1; row < 7; row++) {
+        if (this.state.pieces[col][row].coordinates[0] === crds[0] &&
+          this.state.pieces[col][row].coordinates[1] === crds[1]) {
+          // result.push(col, row);
+          result = this.state.pieces[col][row]
+          return result;
+        }
+      }
+    }
+  }
+
+  createDiagonalSearchArray(type) {
+    var array = [];
+    var p = this.state.pieces;
+    if (type === 'major') {
+      array.push(p['a'][6], p['b'][6], p['c'][6], p['d'][6], p['a'][5], p['b'][5], p['c'][5], p['d'][5], p['a'][4], p['b'][4], p['c'][4], p['d'][4]);
+    } else {
+      array.push(p['d'][6], p['e'][6], p['f'][6], p['g'][6], p['d'][5], p['e'][5], p['f'][5], p['g'][5], p['d'][4], p['e'][4], p['f'][4], p['g'][4]);
+    }
+    return array;
+  }
+
 
 }
 
