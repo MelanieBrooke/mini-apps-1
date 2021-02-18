@@ -123,7 +123,6 @@ class App extends React.Component {
   dropPiece(space) {
     document.getElementById(space).classList.add(this.state.player.toString())
     document.getElementById(space).classList.remove("white");
-    // if (this.checkForWin() || this.checkTie()) {
     if (this.checkForWin()) {
       this.gameEnd();
     } else if (this.checkTie()) {
@@ -230,7 +229,6 @@ class App extends React.Component {
   }
 
   declareWin() {
-    console.log('Win!'),
     this.setState({
       win: true
     })
@@ -242,7 +240,6 @@ class App extends React.Component {
       for (var row = 1; row < 7; row++) {
         if (this.state.pieces[col][row].coordinates[0] === crds[0] &&
           this.state.pieces[col][row].coordinates[1] === crds[1]) {
-          // result.push(col, row);
           result = this.state.pieces[col][row]
           return result;
         }
@@ -268,12 +265,10 @@ class App extends React.Component {
     for (var col in this.state.pieces) {
       for (var row = 1; row < 7; row ++) {
         if (this.state.pieces[col][row].empty === true) {
-          console.log('not a tie yet!')
           return false;
         }
       }
     }
-    console.log('oh it\'s a tie now.')
     return true;
   }
 
