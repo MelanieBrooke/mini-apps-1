@@ -59,3 +59,19 @@ td {
   border-radius: 25px;
   background: white;
 }
+
+.winner {
+  color:#f2f;
+	-webkit-animation: flash linear 1s infinite;
+	animation: flash linear 1s infinite;
+}
+@-webkit-keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
+}
+@keyframes flash {
+	0% { opacity: 1; }
+	50% { opacity: .1; }
+	100% { opacity: 1; }
+}

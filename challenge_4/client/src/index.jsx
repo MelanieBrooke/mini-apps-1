@@ -84,6 +84,7 @@ class App extends React.Component {
     this.createDiagonalSearchArray = this.createDiagonalSearchArray.bind(this);
     this.checkTie = this.checkTie.bind(this);
     this.gameEnd = this.gameEnd.bind(this);
+    this.winnerToken = this.winnerToken.bind(this);
   }
 
   render() {
@@ -153,13 +154,14 @@ class App extends React.Component {
   }
 
   detectColumnWin() {
-    for (var col in this.state.pieces) {
-      col = this.state.pieces[col];
+    for (var column in this.state.pieces) {
+      var col = this.state.pieces[column];
       for (var j = 1; j < 4; j++) {
         if (col[j].empty === false) {
           if (col[j].color === col[j+1].color &&
             col[j].color === col[j+2].color &&
             col[j].color === col[j+3].color) {
+            this.winnerToken([[column, j], [column, j+1], [column, j+2], [column, j+3]]);
             this.declareWin();
             return true;
           }
@@ -182,6 +184,7 @@ class App extends React.Component {
           if (current[k].color === current[k+1].color &&
           current[k].color === current[k+2].color &&
           current[k].color === current[k+3].color) {
+            // this.winnerToken([[k, row], [k+1, row], [k+2, row] [k+3, row]]);
             this.declareWin();
             return true;
           }
@@ -280,6 +283,18 @@ class App extends React.Component {
     })
   }
 
+  winnerToken(array) {
+    var space1 = array[0][0] + array[0][1].toString();
+    var space2 = array[1][0] + array[1][1].toString();
+    var space3 = array[2][0] + array[2][1].toString();
+    var space4 = array[3][0] + array[3][1].toString();
+    console.log(space1, space2, space3, space4);
+    document.getElementById(space1).classList.add('winner');
+    document.getElementById(space2).classList.add('winner');
+    document.getElementById(space3).classList.add('winner');
+    document.getElementById(space4).classList.add('winner');
+    console.log(document.getElementById(space1).classList)
+  }
 
 }
 
