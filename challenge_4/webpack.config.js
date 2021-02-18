@@ -33,5 +33,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: "./client/src/index.html"
     }),
+    // "@babel/plugin-proposal-function-bind",
   ],
 };

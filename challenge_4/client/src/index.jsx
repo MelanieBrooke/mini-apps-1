@@ -13,60 +13,60 @@ class App extends React.Component {
       player: "red",
       pieces: {
         a: {
-          1:{empty:true, color:"white", coordinates: [1, 1]},
-          2:{empty:true, color:"white", coordinates: [1, 2]},
-          3:{empty:true, color:"white", coordinates: [1, 3]},
-          4:{empty:true, color:"white", coordinates: [1, 4]},
-          5:{empty:true, color:"white", coordinates: [1, 5]},
-          6:{empty:true, color:"white", coordinates: [1, 6]},
+          1:{html: 'a1', empty:true, color:"white", coordinates: [1, 1]},
+          2:{html: 'a2', empty:true, color:"white", coordinates: [1, 2]},
+          3:{html: 'a3', empty:true, color:"white", coordinates: [1, 3]},
+          4:{html: 'a4', empty:true, color:"white", coordinates: [1, 4]},
+          5:{html: 'a5', empty:true, color:"white", coordinates: [1, 5]},
+          6:{html: 'a6', empty:true, color:"white", coordinates: [1, 6]},
         },
         b: {
-          1:{empty:true, color:"white", coordinates: [2, 1]},
-          2:{empty:true, color:"white", coordinates: [2, 2]},
-          3:{empty:true, color:"white", coordinates: [2, 3]},
-          4:{empty:true, color:"white", coordinates: [2, 4]},
-          5:{empty:true, color:"white", coordinates: [2, 5]},
-          6:{empty:true, color:"white", coordinates: [2, 6]},
+          1:{html: 'b1', empty:true, color:"white", coordinates: [2, 1]},
+          2:{html: 'b2', empty:true, color:"white", coordinates: [2, 2]},
+          3:{html: 'b3', empty:true, color:"white", coordinates: [2, 3]},
+          4:{html: 'b4', empty:true, color:"white", coordinates: [2, 4]},
+          5:{html: 'b5', empty:true, color:"white", coordinates: [2, 5]},
+          6:{html: 'b6', empty:true, color:"white", coordinates: [2, 6]},
         },
         c: {
-          1:{empty:true, color:"white", coordinates: [3, 1]},
-          2:{empty:true, color:"white", coordinates: [3, 2]},
-          3:{empty:true, color:"white", coordinates: [3, 3]},
-          4:{empty:true, color:"white", coordinates: [3, 4]},
-          5:{empty:true, color:"white", coordinates: [3, 5]},
-          6:{empty:true, color:"white", coordinates: [3, 6]},
+          1:{html: 'c1', empty:true, color:"white", coordinates: [3, 1]},
+          2:{html: 'c2', empty:true, color:"white", coordinates: [3, 2]},
+          3:{html: 'c3', empty:true, color:"white", coordinates: [3, 3]},
+          4:{html: 'c4', empty:true, color:"white", coordinates: [3, 4]},
+          5:{html: 'c5', empty:true, color:"white", coordinates: [3, 5]},
+          6:{html: 'c6', empty:true, color:"white", coordinates: [3, 6]},
         },
         d: {
-          1:{empty:true, color:"white", coordinates: [4, 1]},
-          2:{empty:true, color:"white", coordinates: [4, 2]},
-          3:{empty:true, color:"white", coordinates: [4, 3]},
-          4:{empty:true, color:"white", coordinates: [4, 4]},
-          5:{empty:true, color:"white", coordinates: [4, 5]},
-          6:{empty:true, color:"white", coordinates: [4, 6]},
+          1:{html: 'd1', empty:true, color:"white", coordinates: [4, 1]},
+          2:{html: 'd2', empty:true, color:"white", coordinates: [4, 2]},
+          3:{html: 'd3', empty:true, color:"white", coordinates: [4, 3]},
+          4:{html: 'd4', empty:true, color:"white", coordinates: [4, 4]},
+          5:{html: 'd5', empty:true, color:"white", coordinates: [4, 5]},
+          6:{html: 'd6', empty:true, color:"white", coordinates: [4, 6]},
         },
         e: {
-          1:{empty:true, color:"white", coordinates: [5, 1]},
-          2:{empty:true, color:"white", coordinates: [5, 2]},
-          3:{empty:true, color:"white", coordinates: [5, 3]},
-          4:{empty:true, color:"white", coordinates: [5, 4]},
-          5:{empty:true, color:"white", coordinates: [5, 5]},
-          6:{empty:true, color:"white", coordinates: [5, 6]},
+          1:{html: 'e1', empty:true, color:"white", coordinates: [5, 1]},
+          2:{html: 'e2', empty:true, color:"white", coordinates: [5, 2]},
+          3:{html: 'e3', empty:true, color:"white", coordinates: [5, 3]},
+          4:{html: 'e4', empty:true, color:"white", coordinates: [5, 4]},
+          5:{html: 'e5', empty:true, color:"white", coordinates: [5, 5]},
+          6:{html: 'e6', empty:true, color:"white", coordinates: [5, 6]},
         },
         f: {
-          1:{empty:true, color:"white", coordinates: [6, 1]},
-          2:{empty:true, color:"white", coordinates: [6, 2]},
-          3:{empty:true, color:"white", coordinates: [6, 3]},
-          4:{empty:true, color:"white", coordinates: [6, 4]},
-          5:{empty:true, color:"white", coordinates: [6, 5]},
-          6:{empty:true, color:"white", coordinates: [6, 6]},
+          1:{html: 'f1', empty:true, color:"white", coordinates: [6, 1]},
+          2:{html: 'f2', empty:true, color:"white", coordinates: [6, 2]},
+          3:{html: 'f3', empty:true, color:"white", coordinates: [6, 3]},
+          4:{html: 'f4', empty:true, color:"white", coordinates: [6, 4]},
+          5:{html: 'f5', empty:true, color:"white", coordinates: [6, 5]},
+          6:{html: 'f6', empty:true, color:"white", coordinates: [6, 6]},
         },
         g: {
-          1:{empty:true, color:"white", coordinates: [7, 1]},
-          2:{empty:true, color:"white", coordinates: [7, 2]},
-          3:{empty:true, color:"white", coordinates: [7, 3]},
-          4:{empty:true, color:"white", coordinates: [7, 4]},
-          5:{empty:true, color:"white", coordinates: [7, 5]},
-          6:{empty:true, color:"white", coordinates: [7, 6]},
+          1:{html: 'g1', empty:true, color:"white", coordinates: [7, 1]},
+          2:{html: 'g2', empty:true, color:"white", coordinates: [7, 2]},
+          3:{html: 'g3', empty:true, color:"white", coordinates: [7, 3]},
+          4:{html: 'g4', empty:true, color:"white", coordinates: [7, 4]},
+          5:{html: 'g5', empty:true, color:"white", coordinates: [7, 5]},
+          6:{html: 'g6', empty:true, color:"white", coordinates: [7, 6]},
         },
       }
     };
@@ -91,6 +91,7 @@ class App extends React.Component {
     return(
       <div>
         <h1>Connect Four</h1>
+        <h3>Click on the top of the gameboard to drop a piece in a column</h3>
         <GameEnd player={this.state.player} gameOver={this.state.gameOver} win={this.state.win}/>
         <Board onClick={this.handleClick}/>
       </div>
@@ -99,18 +100,20 @@ class App extends React.Component {
 
   handleClick(event) {
     event.preventDefault();
-    this.checkColumnForEmpty(event.target.id)
+    if (this.state.gameOver === false) {
+      this.checkColumnForEmpty(event.target.id)
+    }
   }
 
-  checkColumnForEmpty (row) {
-    var currentColumn = this.state.pieces[row];
+  checkColumnForEmpty (col) {
+    var currentColumn = this.state.pieces[col];
     var full = true;
-    for (var i = 1; i < 7; i++) {
-      if (currentColumn[i].empty === true) {
-        this.state.pieces[row][i].empty = false;
-        this.state.pieces[row][i].color = this.state.player;
+    for (var row = 1; row < 7; row++) {
+      if (currentColumn[row].empty === true) {
+        this.state.pieces[col][row].empty = false;
+        this.state.pieces[col][row].color = this.state.player;
         full = false;
-        var piece = row.toString() + i.toString();
+        var piece = this.state.pieces[col][row].html;
         this.dropPiece(piece);
         break;
       }
@@ -160,7 +163,7 @@ class App extends React.Component {
           if (col[j].color === col[j+1].color &&
             col[j].color === col[j+2].color &&
             col[j].color === col[j+3].color) {
-            this.winnerToken([[column, j], [column, j+1], [column, j+2], [column, j+3]]);
+            this.winnerToken([col[j].html, col[j+1].html, col[j+2].html, col[j+3].html]);
             this.declareWin();
             return true;
           }
@@ -183,7 +186,7 @@ class App extends React.Component {
           if (current[k].color === current[k+1].color &&
           current[k].color === current[k+2].color &&
           current[k].color === current[k+3].color) {
-            // this.winnerToken([[k, row], [k+1, row], [k+2, row] [k+3, row]]);
+            this.winnerToken([current[k].html, current[k+1].html, current[k+2].html, current[k+3].html]);
             this.declareWin();
             return true;
           }
@@ -203,6 +206,7 @@ class App extends React.Component {
         if (check[l].color === diag1.color &&
         check[l].color === diag2.color &&
         check[l].color === diag3.color) {
+          this.winnerToken([check[l].html, diag1.html, diag2.html, diag3.html]);
           this.declareWin();
           return true;
         }
@@ -221,6 +225,7 @@ class App extends React.Component {
         if (check[l].color === diag1.color &&
         check[l].color === diag2.color &&
         check[l].color === diag3.color) {
+          this.winnerToken([check[l].html, diag1.html, diag2.html, diag3.html]);
           this.declareWin();
           return true;
         }
@@ -279,16 +284,10 @@ class App extends React.Component {
   }
 
   winnerToken(array) {
-    var space1 = array[0][0] + array[0][1].toString();
-    var space2 = array[1][0] + array[1][1].toString();
-    var space3 = array[2][0] + array[2][1].toString();
-    var space4 = array[3][0] + array[3][1].toString();
-    console.log(space1, space2, space3, space4);
-    document.getElementById(space1).classList.add('winner');
-    document.getElementById(space2).classList.add('winner');
-    document.getElementById(space3).classList.add('winner');
-    document.getElementById(space4).classList.add('winner');
-    console.log(document.getElementById(space1).classList)
+    document.getElementById(array[0]).classList.add('winner');
+    document.getElementById(array[1]).classList.add('winner');
+    document.getElementById(array[2]).classList.add('winner');
+    document.getElementById(array[3]).classList.add('winner');
   }
 
 }
