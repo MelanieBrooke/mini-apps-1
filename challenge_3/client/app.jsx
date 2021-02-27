@@ -37,7 +37,7 @@ class App extends React.Component {
     } else if (this.state.currentForm === 3) {
       return <this.DisplayFormThree onClick={this.handleClick} onSubmit={this.handleSubmit} onChange={this.handleChange}/>
     } else if (this.state.currentForm === 4) {
-      return <this.DisplayFormFour onClick={this.handleClick}/>
+      return <this.DisplayFormFour onClick={this.handleClick} info={this.state}/>
     } else if (this.state.currentForm === 5) {
       return <this.DisplayFormFive onClick={this.handleClick}/>
     }
@@ -117,12 +117,16 @@ class App extends React.Component {
       <form onSubmit={props.onSubmit} id="userInfo">
         <label htmlFor="firstName">First Name:</label>
         <input onChange={props.onChange} type="text" name="firstName" id="firstName"/>
+        <br></br>
         <label htmlFor="lastName">Last Name:</label>
         <input onChange={props.onChange} type="text" name="lastName" id="lastName"/>
+        <br></br>
         <label htmlFor="userName">Select a Username:</label>
         <input onChange={props.onChange} type="text" name="userName" id="userName"/>
+        <br></br>
         <label htmlFor="password">Select a Password:</label>
         <input onChange={props.onChange} type="text" name="password" id="password"/>
+        <br></br>
         <label htmlFor="email">Email:</label>
         <input onChange={props.onChange} type="text" name="email" id="email"/>
         <input type="submit" />
@@ -136,10 +140,13 @@ class App extends React.Component {
       <form onSubmit={props.onSubmit} id="userContact">
         <label htmlFor="address1">Address Line 1:</label>
         <input onChange={props.onChange} type="text" name="address1" id="address1"/>
+        <br></br>
         <label htmlFor="address2">Address Line 2:</label>
         <input onChange={props.onChange} type="text" name="address2" id="address2"/>
+        <br></br>
         <label htmlFor="addressCity">City:</label>
         <input onChange={props.onChange} type="text" name="addressCity" id="addressCity"/>
+        <br></br>
         <label htmlFor="addressState">State:</label>
         <select onChange={props.onMenuChange} name="addressState" id="addressState">
           <option value="CO">Colorado</option>
@@ -147,8 +154,10 @@ class App extends React.Component {
           <option value="TX">Texas</option>
           <option value="WA">Washington</option>
         </select>
+        <br></br>
         <label htmlFor="addressZip">Zip Code:</label>
         <input onChange={props.onChange} type="number" name="addressZip" id="addressZip"/>
+        <br></br>
         <label htmlFor="phone">Phone Number:</label>
         <input onChange={props.onChange} type="number" name="phone" id="phone"/>
         <input type="submit"/>
@@ -161,12 +170,15 @@ class App extends React.Component {
       <form onSubmit={props.onSubmit} id="userPayment">
         <label htmlFor="cardNum">Payment Card Number:</label>
         <input onChange={props.onChange} type="number" name="cardNum" id="cardNum"/>
+        <br></br>
         <label htmlFor="cardCVV">CVV (3-digit security code):</label>
         <input onChange={props.onChange} type="number" name="cardCVV" id="cardCVV"/>
+        <br></br>
         <label htmlFor="cardExpMonth">Expiration Month:</label>
         <input onChange={props.onChange} type="number" name="cardExpMonth" id="cardExpMonth"/>
         <label htmlFor="cardExpYear">Expiration Year:</label>
         <input onChange={props.onChange} type="number" name="cardExpYear" id="cardExpYear"/>
+        <br></br>
         <label htmlFor="billingZip">Billing Zip Code:</label>
         <input onChange={props.onChange} type="number" name="billingZip" id="billingZip"/>
         <input type="submit"/>
@@ -177,6 +189,12 @@ class App extends React.Component {
   DisplayFormFour(props) {
     return(<div>
       <h1>Confirm Payment</h1>
+      <p>Name: {props.info.firstName} {props.info.lastName}</p>
+      <p>Username: {props.info.userName}</p>
+      <p>Email: {props.info.email}</p>
+      <p>Phone: {props.info.phone}</p>
+      <p>Address: {props.info.address1} {props.info.address2}, {props.info.addressCity}, {props.info.addressState}, {props.info.addressZip}</p>
+      <p>Card Number: {props.info.cardNum} Card Expiration: {props.info.cardExpMonth}/{props.info.cardExpYear} CVV: {props.info.cardCVV} Billing Zip: {props.info.billingZip}</p>
       <button id="buttonCheckout" onClick={props.onClick}>Confirm info and finalize purchase</button>
     </div>)
   }

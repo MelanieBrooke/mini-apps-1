@@ -65,6 +65,7 @@ var placePiece = function(space) {
         oScore += 1;
         document.getElementById('oScore').innerHTML = oScore;
       }
+      // endGame();
       return;
     } else if (winner === 'tie') {
       document.getElementById('gameInfo').innerHTML = 'Uh oh. The game is tied. You both lost. Reset the board to try again!';
@@ -74,7 +75,7 @@ var placePiece = function(space) {
     }
     changePlayer();
   }
-  else (alert('This space is taken!'));
+  else (console.log('This space is taken!'));
 };
 
 var changePlayer = function() {
@@ -85,3 +86,27 @@ var changePlayer = function() {
   }
   document.getElementById('gameInfo').innerHTML = 'It\'s Player ' + currentPlayer + '\'s turn!';
 };
+
+// Write function that ends game to keep additional clicks from messing up the scoreboard
+
+// var endGame = function() {
+//   var gs1 = document.getElementById('gs1').innerHTML;
+//   var gs2 = document.getElementById('gs2').innerHTML;
+//   var gs3 = document.getElementById('gs3').innerHTML;
+//   var gs4 = document.getElementById('gs4').innerHTML;
+//   var gs5 = document.getElementById('gs5').innerHTML;
+//   var gs6 = document.getElementById('gs6').innerHTML;
+//   var gs7 = document.getElementById('gs7').innerHTML;
+//   var gs8 = document.getElementById('gs8').innerHTML;
+//   var gs9 = document.getElementById('gs9').innerHTML;
+//   console.log('hi')
+//   if (gs1 === '__') {gs1 = '[|]'}
+//   if (gs2 === '__') {gs2 = '[|]'}
+//   if (gs3 === '__') {gs3 = '[|]'}
+//   if (gs4 === '__') {gs4 = '[|]'}
+//   if (gs5 === '__') {gs5 = '[|]'}
+//   if (gs6 === '__') {gs6 = '[|]'}
+//   if (gs7 === '__') {gs7 = '[|]'}
+//   if (gs8 === '__') {gs8 = '[|]'}
+//   if (gs9 === '__') {gs9 = '[|]'}
+// };

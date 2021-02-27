@@ -7,6 +7,7 @@ const GameEnd = (props) => {
       return (
         <div>
           <h2>Congratulations! {playerName} is the winner!</h2>
+          <h3>Refresh page to play again.</h3>
         </div>
       )
     } else {
